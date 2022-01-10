@@ -1,41 +1,28 @@
 import React, { useEffect } from 'react'
-import { initializeApp } from 'firebase/app'
-import { collection, addDoc, getFirestore, getDocs } from 'firebase/firestore'
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyDTb6ZyxqvL-1HK5zOgaCt9ic4Q6IiTwgU',
-  authDomain: 'group-chat-application-d051e.firebaseapp.com',
-  projectId: 'group-chat-application-d051e',
-  storageBucket: 'group-chat-application-d051e.appspot.com',
-  messagingSenderId: '341702542050',
-  appId: '1:341702542050:web:0f23df544856e5b15214bb',
-  measurementId: 'G-YDRD3S2Y2Z',
-}
-
-const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
+import { getDocs, collection } from 'firebase/firestore'
+import { firebaseStore } from '~/services/firebase'
 
 const App = ({ title }: { title: string }) => {
   useEffect(() => {
     void (async () => {
-      const querySnapshot = await getDocs(collection(db, 'users'))
+      const querySnapshot = await getDocs(collection(firebaseStore, 'users'))
       querySnapshot.forEach((doc) => {
-        console.log(`123${doc.id} => ${doc.data()}`)
+        console.log(`${doc.id} => ${doc.data()}`, doc.data())
       })
-    })
+    })()
   }, [])
 
   const onCreateUser = async () => {
-    try {
-      const docRef = await addDoc(collection(db, 'users'), {
-        first: 'Ada',
-        last: 'Lovelace',
-        born: 1815,
-      })
-      console.log('Document written with ID: ', docRef.id)
-    } catch (e) {
-      console.error('Error adding document: ', e)
-    }
+    // try {
+    //   const docRef = await addDoc(collection(db, 'users'), {
+    //     first: 'Ada',
+    //     last: 'Lovelace',
+    //     born: 1815,
+    //   })
+    //   console.log('Document written with ID: ', docRef.id)
+    // } catch (e) {
+    //   console.error('Error adding document: ', e)
+    // }
   }
 
   return (
