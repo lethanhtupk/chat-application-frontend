@@ -2,6 +2,7 @@ const path = require('path')
 const EslintPlugin = require('eslint-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
@@ -47,5 +48,6 @@ module.exports = {
       template: path.resolve(__dirname, '..', './src/index.html'),
     }),
     new EslintPlugin(),
+    new Dotenv(),
   ],
 }
