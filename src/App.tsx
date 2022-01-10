@@ -1,6 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { initializeApp } from 'firebase/app'
+import { collection, addDoc, getFirestore, getDocs } from 'firebase/firestore'
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyDTb6ZyxqvL-1HK5zOgaCt9ic4Q6IiTwgU',
+  authDomain: 'group-chat-application-d051e.firebaseapp.com',
+  projectId: 'group-chat-application-d051e',
+  storageBucket: 'group-chat-application-d051e.appspot.com',
+  messagingSenderId: '341702542050',
+  appId: '1:341702542050:web:0f23df544856e5b15214bb',
+  measurementId: 'G-YDRD3S2Y2Z',
+}
+
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
 
 const App = ({ title }: { title: string }) => {
+  useEffect(() => {
+    void (async () => {
+      const querySnapshot = await getDocs(collection(db, 'users'))
+      querySnapshot.forEach((doc) => {
+        console.log(`123${doc.id} => ${doc.data()}`)
+      })
+    })
+  }, [])
+
+  const onCreateUser = async () => {
+    try {
+      const docRef = await addDoc(collection(db, 'users'), {
+        first: 'Ada',
+        last: 'Lovelace',
+        born: 1815,
+      })
+      console.log('Document written with ID: ', docRef.id)
+    } catch (e) {
+      console.error('Error adding document: ', e)
+    }
+  }
+
   return (
     <div>
       <h1>{title}</h1>
@@ -23,6 +60,9 @@ const App = ({ title }: { title: string }) => {
           step by step.
         </p>
       </ul>
+      <button type="button" onClick={onCreateUser}>
+        Create user
+      </button>
     </div>
   )
 }
