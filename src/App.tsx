@@ -1,32 +1,8 @@
-import React, { useEffect } from 'react'
-import { getDocs, collection } from 'firebase/firestore'
-import { firebaseStore } from '~/services/firebase'
+import React from 'react'
 
 const App = ({ title }: { title: string }) => {
-  useEffect(() => {
-    void (async () => {
-      const querySnapshot = await getDocs(collection(firebaseStore, 'users'))
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`, doc.data())
-      })
-    })()
-  }, [])
-
-  const onCreateUser = async () => {
-    // try {
-    //   const docRef = await addDoc(collection(db, 'users'), {
-    //     first: 'Ada',
-    //     last: 'Lovelace',
-    //     born: 1815,
-    //   })
-    //   console.log('Document written with ID: ', docRef.id)
-    // } catch (e) {
-    //   console.error('Error adding document: ', e)
-    // }
-  }
-
   return (
-    <div>
+    <div className="bg-gray-200">
       <h1>{title}</h1>
       <p>This is an application setup from scratch with full of features like</p>
       <ul>
@@ -47,9 +23,6 @@ const App = ({ title }: { title: string }) => {
           step by step.
         </p>
       </ul>
-      <button type="button" onClick={onCreateUser}>
-        Create user
-      </button>
     </div>
   )
 }
