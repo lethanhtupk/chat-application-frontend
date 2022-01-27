@@ -2,7 +2,11 @@ import React from 'react'
 import Message from '~/components/elements/Message'
 import MessageInput from '~/components/elements/MessageInput'
 
-const Conversation = () => {
+interface Props {
+  onSendMessage: (message: string) => void
+}
+
+const Conversation = ({ onSendMessage }: Props) => {
   return (
     <div className="relative h-full">
       <div className="w-full pt-6 pb-2 pl-4 border-b border-gray-200">
@@ -62,7 +66,7 @@ const Conversation = () => {
         <Message isMyMessage={false} content="Hello there" />
       </div>
       <div className="absolute right-0 w-full bottom-4">
-        <MessageInput />
+        <MessageInput onSendMessage={onSendMessage} />
       </div>
     </div>
   )

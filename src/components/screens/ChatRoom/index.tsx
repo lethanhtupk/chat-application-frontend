@@ -20,13 +20,18 @@ const ChatRoom = () => {
       console.log('Connection Error')
     }
   }, [])
+
+  const onSendMessage = (message: string) => {
+    client.send(message)
+  }
+
   return (
     <div className="grid min-h-screen grid-cols-12">
       <div className="col-span-3 border-r border-gray-300">
         <Contacts />
       </div>
       <div className="col-span-9">
-        <Conversation />
+        <Conversation onSendMessage={onSendMessage} />
       </div>
     </div>
   )
