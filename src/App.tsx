@@ -3,9 +3,14 @@ import ChatRoom from './components/screens/ChatRoom'
 
 const App = ({ title }: { title: string }) => {
   return (
-    <div className="min-w-full min-h-screen">
-      <ChatRoom />
-    </div>
+    <>
+      <head>
+        <title>{title}</title>
+      </head>
+      <div className="min-w-full min-h-screen">
+        <ChatRoom />
+      </div>
+    </>
   )
 }
 

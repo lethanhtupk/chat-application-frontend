@@ -19,7 +19,7 @@ const MessageInput = ({ onSendMessage }: Props) => {
   return (
     <div className="relative flex flex-row items-center w-full px-10">
       <input
-        className="w-full px-4 py-2 rounded-full bg-slate-100 focus:outline-none"
+        className="w-full px-4 py-2 rounded-full bg-slate-100 focus:outline-none border"
         type="text"
         placeholder="Type a message..."
         value={message}

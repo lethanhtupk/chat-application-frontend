@@ -1,7 +1,7 @@
-interface ChatRoomAttributes {
-  id: string
-}
+import { IUser } from '~/models/user'
 
-export interface ChatRoomInstance extends ChatRoomAttributes {
-  chat_room_session_id: string
+export interface ChatRoomAttributes {
+  id: string
+  users: IUser[]
+  currentUserId: string
 }
